@@ -1,0 +1,64 @@
+@if (carrito) {
+  <div class="carrito-container">
+    <h1>Mi Carrito</h1>
+
+    @if (carrito.items.length > 0) {
+      <div class="productos">
+        @for (item of carrito.items; track item.productId) {
+          <div class="producto-item">
+            <img [src]="item.image" [alt]="item.title" />
+
+            <div class="info">
+              <h3>{{ item.title }}</h3>
+
+              <div class="cantidad-container">
+                <span>Cantidad:</span>
+
+                <button class="btn-cantidad" (click)="disminuirCantidad(item.productId)">-</button>
+                <span class="cantidad">
+                  {{ item.quantity }}
+                </span>
+                <button class="btn-cantidad" (click)="aumentarCantidad(item.productId)">+</button>
+              </div>
+
+              <p>Precio unitario: ${{ item.unitPrice }}</p>
+
+              <p>Subtotal: ${{ item.subtotal }}</p>
+
+              <button class="btn-eliminar" (click)="eliminarProducto(item.productId)">
+                🗑 Eliminar
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="resumen">
+        <h2>Resumen de compra</h2>
+
+        <p>
+          Productos:
+          <strong>{{ carrito.totals.itemsCount }}</strong>
+        </p>
+
+        <p>
+          Total:
+          <strong>${{ carrito.totals.subtotal }}</strong>
+        </p>
+      </div>
+    } @else {
+      <p>Tu carrito está vacío.</p>
+    }
+  </div>
+  @if (mostrarToast) {
+    <div class="toast-container">
+      <div class="toast-custom">
+        <mat-icon class="toast-icon"> check_circle </mat-icon>
+
+        <span class="toast-text">
+          {{ mensajeToast }}
+        </span>
+      </div>
+    </div>
+  }
+}

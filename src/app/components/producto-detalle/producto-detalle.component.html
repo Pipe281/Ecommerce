@@ -1,0 +1,57 @@
+@if (producto) {
+  @if (mostrarAlerta) {
+    <div class="alert alert-{{ tipoAlerta }} alert-dismissible fade show" role="alert">
+      {{ mensajeAlerta }}
+
+      <button type="button" class="btn-close" (click)="mostrarAlerta = false"></button>
+    </div>
+  }
+  <div class="breadcrumb">
+    <a class="nav-link" routerLink="/"> Inicio </a> >
+    <a class="nav-link" [routerLink]="ROUTE_PRODUCTOS"> Productos </a> > {{ producto.category }}
+  </div>
+
+  <div class="detalle-container">
+    <div class="galeria">
+      <div class="miniaturas">
+        <img [src]="producto.image" alt="" />
+        <img [src]="producto.image" alt="" />
+        <img [src]="producto.image" alt="" />
+        <img [src]="producto.image" alt="" />
+      </div>
+
+      <div class="imagen-principal">
+        <img [src]="producto.image" [alt]="producto.title" />
+      </div>
+    </div>
+
+    <div class="info">
+      <span class="marca">
+        {{ producto.category | uppercase }}
+      </span>
+
+      <h1>{{ producto.title }}</h1>
+
+      <div class="rating">
+        ⭐⭐⭐⭐☆
+        <span>4.8 (6)</span>
+      </div>
+
+      <div class="precio">${{ producto.price }}</div>
+
+      <p class="descripcion">
+        {{ producto.description }}
+      </p>
+
+      <div class="cantidad">
+        <button (click)="disminuirCantidad()" [disabled]="cantidad <= 1">-</button>
+
+        <span>{{ cantidad }}</span>
+
+        <button (click)="aumentarCantidad()">+</button>
+      </div>
+
+      <button class="btn-comprar" (click)="agregarAlCarrito()">Agregar al carrito</button>
+    </div>
+  </div>
+}

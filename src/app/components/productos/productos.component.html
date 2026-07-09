@@ -1,0 +1,17 @@
+<h2>Listado de Productos</h2>
+
+<div class="lista-productos">
+  @for (producto of productos; track producto.id) {
+    <div class="producto">
+      <h3>{{ producto.title }}</h3>
+
+      <img
+        [src]="producto.image"
+        [alt]="producto.title"
+        [routerLink]="[ROUTE_PRODUCTO, producto.id]"
+      />
+      <br />
+      <strong>${{ producto.price }}</strong>
+    </div>
+  }
+</div>

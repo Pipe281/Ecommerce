@@ -1,0 +1,178 @@
+// Barra de navegación
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: #1f2937;
+}
+
+.nav-left {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.navbar a {
+  position: relative;
+  color: #d1d5db;
+  text-decoration: none;
+  padding: 10px 0;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  background: #374151;
+  color: white;
+  border-radius: 8px;
+}
+
+.activo {
+  color: white !important;
+}
+
+.activo::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #3b82f6;
+  border-radius: 3px;
+}
+
+.detalle {
+  max-width: 800px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.detalle img {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+.carrito {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.material-icons {
+  font-size: 30px;
+}
+.usuario {
+  color: white;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.badge-carrito {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+
+  min-width: 18px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 5px;
+
+  background-color: #dc3545;
+  color: white;
+
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+// cerrar sesion
+.usuario-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.usuario {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+
+  min-width: 180px;
+
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  display: none;
+
+  z-index: 1000;
+}
+
+.usuario-menu:hover .menu-dropdown {
+  display: block;
+}
+
+.btn-cerrar-sesion {
+  width: 100%;
+
+  padding: 10px 16px;
+
+  border: none;
+  background: transparent;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s;
+}
+
+.btn-cerrar-sesion:hover {
+  background-color: #f5f5f5;
+}
+
+// Login button
+.login-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: white;
+  cursor: pointer;
+
+  padding: 8px 12px;
+
+  border-radius: 6px;
+
+  transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+  background: #374151;
+}
+
+.login-btn mat-icon {
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}

@@ -1,0 +1,38 @@
+<nav class="navbar">
+  <div class="nav-left">
+    <a routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">
+      Inicio
+    </a>
+
+    <a [routerLink]="ROUTE_PRODUCTOS" routerLinkActive="activo"> Productos </a>
+
+    <a [routerLink]="ROUTE_ACERCADE" routerLinkActive="activo"> Acerca de </a>
+  </div>
+
+  <div class="nav-right">
+    @if (!usuario) {
+      <a class="login-btn" (click)="abrirLogin()">
+        <mat-icon> account_circle </mat-icon>
+        <span> Iniciar sesión </span>
+      </a>
+    } @else {
+      <div class="usuario-menu">
+        <span class="usuario"> Bienvenido {{ usuario.username }} </span>
+
+        <div class="menu-dropdown">
+          <button class="btn-cerrar-sesion" (click)="cerrarSesion()">🚪 Cerrar sesión</button>
+        </div>
+      </div>
+    }
+
+    <a (click)="abrirCarrito()" class="carrito">
+      <span class="material-icons"> shopping_cart </span>
+
+      @if (itemsCount > 0) {
+        <span class="badge-carrito">
+          {{ itemsCount }}
+        </span>
+      }
+    </a>
+  </div>
+</nav>
