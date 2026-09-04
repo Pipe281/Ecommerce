@@ -88,7 +88,53 @@
       }
     </button>
   </form>
+  <div class="test-credentials">
+    <button
+      mat-stroked-button
+      type="button"
+      class="info-button"
+      aria-controls="test-credentials-popup"
+      [attr.aria-expanded]="showTestCredentials"
+      (click)="toggleTestCredentials()"
+    >
+      <mat-icon>info</mat-icon>
+      <span>Credenciales de prueba</span>
+    </button>
 
+    @if (showTestCredentials) {
+      <div
+        id="test-credentials-popup"
+        class="credentials-popup"
+        role="dialog"
+        aria-labelledby="test-credentials-title"
+      >
+        <div class="credentials-popup-header">
+          <h3 id="test-credentials-title">Credenciales de prueba</h3>
+
+          <button
+            mat-icon-button
+            type="button"
+            aria-label="Cerrar credenciales de prueba"
+            (click)="toggleTestCredentials()"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+
+        <p>Utiliza estos datos para ingresar al sitio:</p>
+
+        <div class="credential-row">
+          <span>Usuario</span>
+          <strong>test&#64;test.cl</strong>
+        </div>
+
+        <div class="credential-row">
+          <span>Contraseña</span>
+          <strong>123456789</strong>
+        </div>
+      </div>
+    }
+  </div>
   <!-- ===========================
        Error Login
   ============================ -->

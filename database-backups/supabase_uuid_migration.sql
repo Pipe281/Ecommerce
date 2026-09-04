@@ -53,6 +53,9 @@ alter table public.carts drop constraint if exists fk_carts_user;
 alter table public.carts rename column user_id to legacy_user_id;
 alter table public.carts add column if not exists user_id uuid;
 
+-- Los usuarios nuevos no tienen un id numerico historico.
+alter table public.carts alter column legacy_user_id drop not null;
+
 update public.carts c
 set user_id = p.id
 from public.users u

@@ -60,7 +60,7 @@ export type Database = {
         Row: {
           created_at: string
           id: number
-          legacy_user_id: number
+          legacy_user_id: number | null
           status: string
           updated_at: string
           user_id: string | null
@@ -68,7 +68,7 @@ export type Database = {
         Insert: {
           created_at?: string
           id?: number
-          legacy_user_id: number
+          legacy_user_id?: number | null
           status?: string
           updated_at?: string
           user_id?: string | null

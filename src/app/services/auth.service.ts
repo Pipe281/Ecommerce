@@ -19,13 +19,52 @@ export class AuthService {
         return from(supabase.from('profiles').select('*').eq('id', data.user.id).single()).pipe(
           switchMap(({ data: profile, error: profileError }) => {
             if (profileError || !profile) return throwError(() => profileError ?? new Error('Perfil no encontrado'));
-            return from(supabase.from('carts').select('id').eq('user_id', profile.id).eq('status', 'OPEN').single()).pipe(
-              switchMap(({ data: cart, error: cartError }) => {
-                if (cartError || !cart) return throwError(() => cartError ?? new Error('Carrito no encontrado'));
-                const user = profile as ProfileRow;
-                return from([{
-                  id: user.id, username: user.username, email: user.email, cartId: cart.id,
-                }]);
+            return from(
+              supabase
+                .from('carts')
+                .select('id')
+                .eq('user_id', profile.id)
+                .eq('status', 'OPEN')
+                .maybeSingle(),
+            ).pipe(
+              switchMap(({ data: existingCart, error: cartError }) => {
+                if (cartError) return throwError(() => cartError);
+
+                if (existingCart) {
+                  const user = profile as ProfileRow;
+                  return from([{
+                    id: user.id,
+                    username: user.username,
+                    email: user.email,
+                    cartId: existingCart.id,
+                  }]);
+                }
+
+                return from(
+                  supabase
+                    .from('carts')
+                    .insert({
+                      user_id: profile.id,
+                      status: 'OPEN',
+                      legacy_user_id: null,
+                    })
+                    .select('id')
+                    .single(),
+                ).pipe(
+                  switchMap(({ data: newCart, error: createCartError }) => {
+                    if (createCartError || !newCart) {
+                      return throwError(() => createCartError ?? new Error('No se pudo crear el carrito'));
+                    }
+
+                    const user = profile as ProfileRow;
+                    return from([{
+                      id: user.id,
+                      username: user.username,
+                      email: user.email,
+                      cartId: newCart.id,
+                    }]);
+                  }),
+                );
               }),
             );
           }),

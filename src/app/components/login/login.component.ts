@@ -27,6 +27,7 @@ import { finalize } from 'rxjs/internal/operators/finalize';
 export class LoginComponent {
   mensaje = '';
   hidePassword = true;
+  showTestCredentials = false;
   form!: FormGroup;
   loading = false;
 
@@ -51,6 +52,11 @@ export class LoginComponent {
   get passwordControl() {
     return this.form.controls['password'];
   }
+
+  toggleTestCredentials(): void {
+    this.showTestCredentials = !this.showTestCredentials;
+  }
+
   login(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
