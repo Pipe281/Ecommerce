@@ -18,6 +18,10 @@ export class CarritoComponent implements OnInit {
   constructor(private readonly cartService: CartService) {}
 
   ngOnInit(): void {
+    if (typeof sessionStorage === 'undefined') {
+      return;
+    }
+
     const usuario = JSON.parse(sessionStorage.getItem('usuario') ?? '{}');
 
     if (!usuario.cartId) {
@@ -27,7 +31,6 @@ export class CarritoComponent implements OnInit {
     this.cartService.getCartById(usuario.cartId).subscribe({
       next: (data) => {
         this.carrito = data;
-        console.log('Carrito cargado', data);
       },
     });
   }

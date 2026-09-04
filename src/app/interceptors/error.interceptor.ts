@@ -10,11 +10,6 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      console.log('===== ERROR HTTP =====');
-      console.log('URL:', req.url);
-      console.log('Status:', error.status);
-      console.log('Mensaje:', error.message);
-      console.log('Error completo:', error);
       switch (error.status) {
         case 0:
           notification.error('No fue posible conectar con el servidor.');
@@ -32,7 +27,6 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           break;
 
         case 500:
-          console.log('Error 500:', error);
           notification.error('Ocurrió un error interno del servidor.');
 
           break;

@@ -140,9 +140,17 @@ mat-form-field {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
 
   transition: all 0.25s ease;
+}
+
+.login-button-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  line-height: 1;
 }
 
 .login-button:hover {

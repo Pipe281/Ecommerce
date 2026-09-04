@@ -74,17 +74,17 @@
       [disabled]="form.invalid || loading"
     >
       @if (loading) {
-        <ng-container>
+        <span class="login-button-content">
           <mat-spinner diameter="22"></mat-spinner>
 
-          <span> Ingresando... </span>
-        </ng-container>
+          <span>Ingresando...</span>
+        </span>
       } @else {
-        <ng-container>
+        <span class="login-button-content">
           <mat-icon> login </mat-icon>
 
-          <span> Ingresar </span>
-        </ng-container>
+          <span>Ingresar</span>
+        </span>
       }
     </button>
   </form>

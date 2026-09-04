@@ -27,6 +27,9 @@ export class ProductosComponent implements OnInit {
       next: (data) => {
         this.productos = data;
       },
+      error: (error) => {
+        console.error('Error cargando productos:', error);
+      },
     });
   }
 }
